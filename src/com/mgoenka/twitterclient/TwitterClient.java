@@ -21,7 +21,7 @@ import com.loopj.android.http.RequestParams;
 
 public class TwitterClient extends OAuthBaseClient {
     public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class; // Change this
-    public static final String REST_URL = "https://api.twitter.com"; // Change this, base API URL
+    public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
     public static final String REST_CONSUMER_KEY = "";       // Change this
     public static final String REST_CONSUMER_SECRET = ""; // Change this
     public static final String REST_CALLBACK_URL = "oauth://twitterclient"; // Change this (here and in manifest)
@@ -31,7 +31,7 @@ public class TwitterClient extends OAuthBaseClient {
     }
     
     public void getHomeTimeline(AsyncHttpResponseHandler handler) {
-    	String url = getApiUrl("1.1/statuses/home_timeline.json");
+    	String url = getApiUrl("statuses/home_timeline.json");
         RequestParams params = new RequestParams();
         params.put("count", "25");
     	
@@ -39,7 +39,7 @@ public class TwitterClient extends OAuthBaseClient {
     }
 
     public void postStatusUpdates(AsyncHttpResponseHandler handler, String status) {
-    	String url = getApiUrl("1.1/statuses/update.json");
+    	String url = getApiUrl("statuses/update.json");
         RequestParams params = new RequestParams();
         params.put("status", status);
     	
