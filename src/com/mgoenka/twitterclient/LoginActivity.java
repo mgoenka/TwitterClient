@@ -2,7 +2,6 @@ package com.mgoenka.twitterclient;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 
 import com.codepath.oauth.OAuthLoginActivity;
@@ -16,7 +15,6 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
 	}
 
 	// OAuth authenticated successfully, launch primary authenticated activity
-	// i.e Display application "homepage"
     @Override
     public void onLoginSuccess() {
     	Intent i = new Intent(this, TimelineActivity.class);
@@ -24,7 +22,6 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
     }
     
     // OAuth authentication flow failed, handle the error
-    // i.e Display an error dialog or toast
     @Override
     public void onLoginFailure(Exception e) {
         e.printStackTrace();
@@ -36,5 +33,4 @@ public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
     public void loginToRest(View view) {
         getClient().connect();
     }
-
 }

@@ -5,7 +5,7 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:onClick="onComposeTweet"
-        android:title="@string/compose_tweet"
+        android:title="@string/title_activity_compose"
         android:icon="@drawable/ic_compose_tweet"/>
 
 </menu>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,5 +41,7 @@ public class TimelineActivity extends Activity {
 	}
 	
 	public void onComposeTweet(MenuItem mi) {
+		Intent i = new Intent(this, ComposeActivity.class);
+		startActivity(i);
 	}
 }
