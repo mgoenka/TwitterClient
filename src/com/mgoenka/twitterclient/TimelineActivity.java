@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -37,5 +38,7 @@ public class TimelineActivity extends Activity {
 		getMenuInflater().inflate(R.menu.timeline, menu);
 		return true;
 	}
-
+	
+	public void onComposeTweet(MenuItem mi) {
+	}
 }
