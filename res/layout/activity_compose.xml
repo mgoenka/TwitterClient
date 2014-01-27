@@ -21,4 +21,23 @@
         <requestFocus />
     </EditText>
 
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/etComposedTweet"
+        android:layout_marginTop="50dp"
+        android:onClick="onCancel"
+        android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/btnTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnCancel"
+        android:layout_alignParentRight="true"
+        android:onClick="onTweet"
+        android:text="@string/tweet" />
+
 </RelativeLayout>

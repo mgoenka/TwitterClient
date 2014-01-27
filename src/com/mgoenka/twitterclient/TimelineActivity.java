@@ -22,10 +22,10 @@ public class TimelineActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		
-		issueTimelineUpdateRequest();
+		refreshTimeline();
 	}
 	
-	private void issueTimelineUpdateRequest() {
+	private void refreshTimeline() {
 		TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
@@ -46,7 +46,7 @@ public class TimelineActivity extends Activity {
 	}
 	
 	public void onRefresh(MenuItem mi) {
-		issueTimelineUpdateRequest();
+		refreshTimeline();
 	}
 	
 	public void onComposeTweet(MenuItem mi) {
@@ -58,8 +58,7 @@ public class TimelineActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // REQUEST_CODE is defined above
 	    if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+		    refreshTimeline();
 	    }
-	    
-	    issueTimelineUpdateRequest();
 	}
 }

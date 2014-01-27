@@ -8,5 +8,7 @@
     <string name="title_activity_compose">Compose Tweet</string>
     <string name="hello_world">Hello world!</string>
     <string name="refresh">Refresh</string>
+    <string name="cancel">Cancel</string>
+    <string name="tweet">Tweet</string>
     
 </resources>

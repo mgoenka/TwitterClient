@@ -1,7 +1,10 @@
 package com.mgoenka.twitterclient;
 
+import org.json.JSONArray;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -14,12 +17,22 @@ public class ComposeActivity extends Activity {
 		setContentView(R.layout.activity_compose);
 	}
 	
-	@Override
-	public void onBackPressed() {
+	public void onCancel(View v) {
+		finish();
+	}
+	
+	public void onTweet(View v) {
+		postTweet();
+	}
+	
+	protected void postTweet() {
 		String composedTweet = ((EditText) findViewById(R.id.etComposedTweet)).getText().toString();
 		
 		TwitterClientApp.getRestClient().postStatusUpdates(new JsonHttpResponseHandler() {
-			public void onSuccess() {
+			@Override
+			public void onSuccess(JSONArray postTweets) {
+				// Update timeline
+				// refreshTimeline();
 			}
 		}, composedTweet);
 		finish();
