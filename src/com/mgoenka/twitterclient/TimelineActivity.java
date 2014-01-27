@@ -76,8 +76,13 @@ public class TimelineActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // REQUEST_CODE is defined above
-	    if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-	    	updateTimeline(false);
+	    if (requestCode == REQUEST_CODE) {
+	    	try {
+				Thread.sleep(500);
+		    	updateTimeline(false);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 	    }
 	}
 }
