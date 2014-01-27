@@ -43,6 +43,9 @@ public class TimelineActivity extends Activity {
 	}
 	
 	private void updateTimeline(final boolean more) {
+		int tweetsSize = tweets.size();
+		long lastTweetId = tweetsSize > 0 ? tweets.get(tweetsSize - 1).getId() : 0;
+		
 		TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
@@ -51,7 +54,7 @@ public class TimelineActivity extends Activity {
 				}
 				adapter.addAll(Tweet.fromJson(jsonTweets));
 			}
-		}, more);
+		}, more, lastTweetId);
 	}
 
 	@Override
