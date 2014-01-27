@@ -1,11 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_compose"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:onClick="onComposeTweet"
         android:title="@string/title_activity_compose"
         android:icon="@drawable/ic_compose_tweet"/>
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/refresh"
+        android:onClick="onRefresh"
+        android:icon="@drawable/ic_refresh"
+        android:showAsAction="always"/>
 
 </menu>

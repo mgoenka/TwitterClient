@@ -15,12 +15,17 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mgoenka.twitterclient.models.Tweet;
 
 public class TimelineActivity extends Activity {
+	private final int REQUEST_CODE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		
+		issueTimelineUpdateRequest();
+	}
+	
+	private void issueTimelineUpdateRequest() {
 		TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
@@ -40,8 +45,21 @@ public class TimelineActivity extends Activity {
 		return true;
 	}
 	
+	public void onRefresh(MenuItem mi) {
+		issueTimelineUpdateRequest();
+	}
+	
 	public void onComposeTweet(MenuItem mi) {
-		Intent i = new Intent(this, ComposeActivity.class);
-		startActivity(i);
+		Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+		startActivityForResult(i, REQUEST_CODE);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    // REQUEST_CODE is defined above
+	    if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+	    }
+	    
+	    issueTimelineUpdateRequest();
 	}
 }

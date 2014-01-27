@@ -20,7 +20,6 @@ public class ComposeActivity extends Activity {
 		
 		TwitterClientApp.getRestClient().postStatusUpdates(new JsonHttpResponseHandler() {
 			public void onSuccess() {
-				// Update the timeline with new tweets
 			}
 		}, composedTweet);
 		finish();
