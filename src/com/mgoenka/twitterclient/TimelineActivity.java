@@ -16,26 +16,42 @@ import com.mgoenka.twitterclient.models.Tweet;
 
 public class TimelineActivity extends Activity {
 	private final int REQUEST_CODE = 1;
+	ListView lvTweets;
+	ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	TweetsAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		
-		refreshTimeline();
+		adapter = new TweetsAdapter(this, tweets);
+		lvTweets = (ListView) findViewById(R.id.lvTweets);
+		lvTweets.setAdapter(adapter);
+
+		// Attach the listener to the AdapterView onCreate
+		lvTweets.setOnScrollListener(new EndlessScrollListener() {
+	        @Override
+	        public void onLoadMore(int page, int totalItemsCount) {
+	            // Triggered only when new data needs to be appended to the list
+	            // Add whatever code is needed to append new items to your AdapterView
+	        	updateTimeline(true);
+	        }
+        });
+		
+		updateTimeline(false);
 	}
 	
-	private void refreshTimeline() {
+	private void updateTimeline(final boolean more) {
 		TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
-				ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
-				
-				ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
-				TweetsAdapter adapter = new TweetsAdapter(getBaseContext(), tweets);
-				lvTweets.setAdapter(adapter);
+				if (!more) {
+					tweets.clear();
+				}
+				adapter.addAll(Tweet.fromJson(jsonTweets));
 			}
-		});
+		}, more);
 	}
 
 	@Override
@@ -46,7 +62,7 @@ public class TimelineActivity extends Activity {
 	}
 	
 	public void onRefresh(MenuItem mi) {
-		refreshTimeline();
+		updateTimeline(false);
 	}
 	
 	public void onComposeTweet(MenuItem mi) {
@@ -58,7 +74,7 @@ public class TimelineActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // REQUEST_CODE is defined above
 	    if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-		    refreshTimeline();
+	    	updateTimeline(false);
 	    }
 	}
 }
