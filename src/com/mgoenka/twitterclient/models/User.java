@@ -3,7 +3,9 @@ package com.mgoenka.twitterclient.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class User {
+import com.activeandroid.Model;
+
+public class User extends Model {
 	private String name;
 	private long uid;
 	private String screenName;
@@ -17,7 +19,7 @@ public class User {
         return name;
     }
 
-    public long getId() {
+    public long getUserId() {
         return uid;
     }
 
