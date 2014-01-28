@@ -25,9 +25,6 @@ public class Tweet extends Model {
 	private String userProfileImageUrl;
 	
 	private long uid;
-	private boolean favorited;
-	private boolean retweeted;
-	private User user;
 
     public String getBody() {
         return body;
@@ -49,25 +46,17 @@ public class Tweet extends Model {
         return uid;
     }
 
-    public boolean isFavorited() {
-        return favorited;
-    }
-
-    public boolean isRetweeted() {
-        return retweeted;
-    }
-
     public static Tweet fromJson(JSONObject jsonObject) {
+    	User user;
+    	
         Tweet tweet = new Tweet();
         try {
         	tweet.body = jsonObject.getString("text");
         	tweet.uid = jsonObject.getLong("id");
-        	tweet.favorited = jsonObject.getBoolean("favorited");
-        	tweet.retweeted = jsonObject.getBoolean("retweeted");
-            tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-            tweet.userName = tweet.user.getName();
-            tweet.userScreenName = tweet.user.getScreenName();
-            tweet.userProfileImageUrl = tweet.user.getProfileImageUrl();
+            user = User.fromJson(jsonObject.getJSONObject("user"));
+            tweet.userName = user.getName();
+            tweet.userScreenName = user.getScreenName();
+            tweet.userProfileImageUrl = user.getProfileImageUrl();
         } catch (JSONException e) {
             e.printStackTrace();
             return null;
