@@ -24,6 +24,7 @@ public class Tweet extends Model {
 	@Column(name = "UserProfileImageUrl")
 	private String userProfileImageUrl;
 	
+	@Column(name = "UId", index = true, unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
 	private long uid;
 
     public String getBody() {

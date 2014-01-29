@@ -8,6 +8,7 @@ import android.content.Context;
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.mgoenka.twitterclient.models.Keys;
 
 /*
  * 
@@ -22,8 +23,8 @@ import com.loopj.android.http.RequestParams;
 public class TwitterClient extends OAuthBaseClient {
     public static final Class<? extends Api> REST_API_CLASS = TwitterApi.class; // Change this
     public static final String REST_URL = "https://api.twitter.com"; // Change this, base API URL
-    public static final String REST_CONSUMER_KEY = "";       // Change this
-    public static final String REST_CONSUMER_SECRET = ""; // Change this
+    public static final String REST_CONSUMER_KEY = Keys.getConsumerKey(); //Integer.toString(R.string.consumer_key);       // Change this
+    public static final String REST_CONSUMER_SECRET = Keys.getConsumerSecret(); //Integer.toString(R.string.consumer_Secret); // Change this
     public static final String REST_CALLBACK_URL = "oauth://twitterclient"; // Change this (here and in manifest)
     
     public TwitterClient(Context context) {

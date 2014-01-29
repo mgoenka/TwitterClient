@@ -57,3 +57,6 @@ local.properties
 
 # Mac Specific
 .DS_Store
+
+# Keys
+src/com/mgoenka/twitterclient/models/Keys.java

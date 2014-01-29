@@ -57,6 +57,7 @@ public class TimelineActivity extends Activity {
 				public void onSuccess(JSONArray jsonTweets) {
 					if (!more) {
 						tweets.clear();
+						// new Delete().from(Tweet.class).execute();
 					}
 					adapter.addAll(Tweet.fromJson(jsonTweets));
 				}
