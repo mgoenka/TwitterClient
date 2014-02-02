@@ -74,15 +74,20 @@ public abstract class TweetsListFragment extends Fragment {
 				public void handleFailureMessage(Throwable e, String responseBody) {
 					if (responseBody.indexOf("\"code\":88") > 0) {
 						Toast.makeText(getActivity(), getString(R.string.api_limit_exceeded), Toast.LENGTH_SHORT).show();
+						displayCachedTweets();
 					}
 				}
 			}, getTweetType(), more, lastTweetId);
 		} else if (!more) {
-			tweets.clear();
-			List<Tweet> twt = new Select().from(Tweet.class).execute();
-			ArrayList<Tweet> tweetsData = new ArrayList<Tweet>(twt);
-			getAdapter().addAll(tweetsData);
+			displayCachedTweets();
 		}
+	}
+	
+	private void displayCachedTweets() {
+		tweets.clear();
+		List<Tweet> twt = new Select().from(Tweet.class).execute();
+		ArrayList<Tweet> tweetsData = new ArrayList<Tweet>(twt);
+		getAdapter().addAll(tweetsData);
 	}
 	
 	public TweetsAdapter getAdapter() {
