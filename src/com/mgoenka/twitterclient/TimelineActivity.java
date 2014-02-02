@@ -52,29 +52,24 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	}
 	
 	public void onComposeTweet(MenuItem mi) {
-		Intent i = new Intent(this, ComposeActivity.class);
+		Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
 		startActivityForResult(i, REQUEST_CODE);
-	}
-	
-	public void onProfileView(MenuItem mi) {
-		Intent i = new Intent(this, ProfileActivity.class);
-		i.putExtra("screen_name", "@me@");
-    	startActivity(i);
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // REQUEST_CODE is defined above
 	    if (requestCode == REQUEST_CODE) {
-	    	try {
-				Thread.sleep(500);
-				updateTweets();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			updateTweets();
 	    }
 	}
 
+	public void onProfileView(MenuItem mi) {
+		Intent i = new Intent(this, ProfileActivity.class);
+		i.putExtra("screen_name", "@me@");
+    	startActivity(i);
+	}
+	
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 	}
@@ -90,7 +85,7 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	}
 	
 	private void updateTweets() {
-		FragmentManager manager = getSupportFragmentManager();
+		FragmentManager manager = this.getSupportFragmentManager();
 		android.support.v4.app.FragmentTransaction fts = manager.beginTransaction();
 		
 		if (selectedTab == "HomeTimelineFragment") {
