@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mgoenka.twitterclient.controllers.TwitterClientApp;
 
 public class ComposeActivity extends Activity {
 

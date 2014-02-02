@@ -16,10 +16,10 @@ import android.widget.Toast;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.mgoenka.twitterclient.EndlessScrollListener;
 import com.mgoenka.twitterclient.R;
 import com.mgoenka.twitterclient.TweetsAdapter;
-import com.mgoenka.twitterclient.TwitterClientApp;
+import com.mgoenka.twitterclient.controllers.TwitterClientApp;
+import com.mgoenka.twitterclient.helpers.EndlessScrollListener;
 import com.mgoenka.twitterclient.helpers.Utilities;
 import com.mgoenka.twitterclient.models.Tweet;
 

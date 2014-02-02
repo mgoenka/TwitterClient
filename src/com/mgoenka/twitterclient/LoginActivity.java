@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.codepath.oauth.OAuthLoginActivity;
+import com.mgoenka.twitterclient.controllers.TwitterClient;
 
 public class LoginActivity extends OAuthLoginActivity<TwitterClient> {
 

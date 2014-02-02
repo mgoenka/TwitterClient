@@ -1,4 +1,4 @@
-package com.mgoenka.twitterclient;
+package com.mgoenka.twitterclient.controllers;
 
 import org.scribe.builder.api.Api;
 import org.scribe.builder.api.TwitterApi;
@@ -8,6 +8,7 @@ import android.content.Context;
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.mgoenka.twitterclient.ProfileActivity;
 import com.mgoenka.twitterclient.helpers.Keys;
 
 /*

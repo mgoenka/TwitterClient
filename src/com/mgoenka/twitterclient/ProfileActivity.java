@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.mgoenka.twitterclient.controllers.TwitterClientApp;
 import com.mgoenka.twitterclient.models.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

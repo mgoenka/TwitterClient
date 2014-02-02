@@ -1,4 +1,4 @@
-package com.mgoenka.twitterclient;
+package com.mgoenka.twitterclient.helpers;
 
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;

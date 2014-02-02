@@ -1,4 +1,4 @@
-package com.mgoenka.twitterclient;
+package com.mgoenka.twitterclient.controllers;
 
 import android.content.Context;
 
@@ -24,11 +24,9 @@ public class TwitterClientApp extends com.activeandroid.app.Application {
         TwitterClientApp.context = this;
         
         // Create global configuration and initialize ImageLoader with this configuration
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().
-        		cacheInMemory().cacheOnDisc().build();
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().cacheInMemory().cacheOnDisc().build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-            .defaultDisplayImageOptions(defaultOptions)
-            .build();
+            	.defaultDisplayImageOptions(defaultOptions).build();
         ImageLoader.getInstance().init(config);
     }
     
