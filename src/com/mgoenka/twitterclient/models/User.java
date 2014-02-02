@@ -8,8 +8,11 @@ import com.activeandroid.Model;
 public class User extends Model {
 	private String name;
 	private String screenName;
+	private String tagline;
 	private String profileImageUrl;
 	private String profileBgImageUrl;
+	private int followersCount;
+	private int friendsCount;
 	
     public String getName() {
         return name;
@@ -19,6 +22,10 @@ public class User extends Model {
         return screenName;
     }
 
+    public String getTagline() {
+        return tagline;
+    }
+
     public String getProfileImageUrl() {
         return profileImageUrl;
     }
@@ -26,14 +33,26 @@ public class User extends Model {
     public String getProfileBackgroundImageUrl() {
         return profileBgImageUrl;
     }
+    
+    public int getFollowersCount() {
+    	return followersCount;
+    }
+
+    public int getFriendsCount() {
+    	return friendsCount;
+    }
 
     public static User fromJson(JSONObject json) {
         User u = new User();
         try {
         	u.name = json.getString("name");
         	u.screenName = json.getString("screen_name");
+        	u.tagline = json.getString("description");
         	u.profileImageUrl = json.getString("profile_image_url");
         	u.profileBgImageUrl = json.getString("profile_background_image_url");
+        	u.followersCount = json.getInt("followers_count");
+        	u.friendsCount = json.getInt("friends_count");
+        	
         } catch (JSONException e) {
             e.printStackTrace();
         }

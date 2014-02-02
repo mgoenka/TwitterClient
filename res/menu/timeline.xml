@@ -1,12 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_compose"
+        android:id="@+id/action_profile"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:onClick="onComposeTweet"
-        android:title="@string/title_activity_compose"
-        android:icon="@drawable/ic_compose_tweet"/>
+        android:icon="@drawable/ic_profile"
+        android:onClick="onProfileView"
+        android:title="Profile"/>
 
     <item
         android:id="@+id/action_refresh"
@@ -14,5 +14,12 @@
         android:onClick="onRefresh"
         android:icon="@drawable/ic_refresh"
         android:showAsAction="always"/>
+    
+    <item
+        android:id="@+id/action_compose"
+        android:showAsAction="always"
+        android:onClick="onComposeTweet"
+        android:title="@string/title_activity_compose"
+        android:icon="@drawable/ic_compose_tweet"/>
 
 </menu>

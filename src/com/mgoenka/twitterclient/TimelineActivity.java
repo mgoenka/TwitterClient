@@ -57,6 +57,11 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 		startActivityForResult(i, REQUEST_CODE);
 	}
 	
+	public void onProfileView(MenuItem mi) {
+		Intent i = new Intent(this, ProfileActivity.class);
+		startActivity(i);
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // REQUEST_CODE is defined above
