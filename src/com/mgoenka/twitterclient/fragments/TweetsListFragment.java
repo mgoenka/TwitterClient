@@ -23,7 +23,7 @@ import com.mgoenka.twitterclient.TwitterClientApp;
 import com.mgoenka.twitterclient.helpers.Utilities;
 import com.mgoenka.twitterclient.models.Tweet;
 
-public class TweetsListFragment extends Fragment {
+public abstract class TweetsListFragment extends Fragment {
 	ListView lvTweets;
 	ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 	TweetsAdapter adapter;
@@ -53,16 +53,13 @@ public class TweetsListFragment extends Fragment {
 		updateTweets(false);
 	}
 	
-	public String getTweetType() {
-		// Override this method in other classes
-		return "home";
-	}
+	public abstract String getTweetType();
 	
 	public void updateTweets(final boolean more) {
 		int tweetsSize = tweets.size();
 		long lastTweetId = tweetsSize > 0 ? tweets.get(tweetsSize - 1).getUserId() : 0;
 		
-		if (Utilities.isNetworkAvailable()) {
+		if (Utilities.isNetworkAvailable(getActivity())) {
 			TwitterClientApp.getRestClient().getTweets(new JsonHttpResponseHandler() {
 				@Override
 				public void onSuccess(JSONArray jsonTweets) {
