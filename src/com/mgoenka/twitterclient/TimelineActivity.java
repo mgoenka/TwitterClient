@@ -16,6 +16,7 @@ import com.mgoenka.twitterclient.fragments.MentionsFragment;
 
 public class TimelineActivity extends FragmentActivity implements TabListener {
 	private final int REQUEST_CODE = 1;
+	private Object selectedTab = "HomeTimelineFragment";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	}
 	
 	public void onRefresh(MenuItem mi) {
-		// updateTimeline(false);
+		updateTweets();
 	}
 	
 	public void onComposeTweet(MenuItem mi) {
@@ -68,7 +69,7 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	    if (requestCode == REQUEST_CODE) {
 	    	try {
 				Thread.sleep(500);
-		    	//updateTimeline(false);
+				updateTweets();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -82,10 +83,19 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		selectedTab = tab.getTag();
+		updateTweets();
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	}
+	
+	private void updateTweets() {
 		FragmentManager manager = getSupportFragmentManager();
 		android.support.v4.app.FragmentTransaction fts = manager.beginTransaction();
 		
-		if (tab.getTag() == "HomeTimelineFragment") {
+		if (selectedTab == "HomeTimelineFragment") {
 			// Set the fragment in FrameLayout to Home Timeline
 			fts.replace(R.id.frame_container, new HomeTimelineFragment());
 		} else {
@@ -93,9 +103,5 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 			fts.replace(R.id.frame_container, new MentionsFragment());
 		}
 		fts.commit();
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	}
 }

@@ -8,7 +8,7 @@ import android.content.Context;
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.mgoenka.twitterclient.models.Keys;
+import com.mgoenka.twitterclient.helpers.Keys;
 
 /*
  * 

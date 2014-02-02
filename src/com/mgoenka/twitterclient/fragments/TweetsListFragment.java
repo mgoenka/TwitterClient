@@ -72,7 +72,9 @@ public abstract class TweetsListFragment extends Fragment {
 				
 				@Override
 				public void handleFailureMessage(Throwable e, String responseBody) {
-					Toast.makeText(getActivity(), responseBody, Toast.LENGTH_SHORT).show();
+					if (responseBody.indexOf("\"code\":88") > 0) {
+						Toast.makeText(getActivity(), getString(R.string.api_limit_exceeded), Toast.LENGTH_SHORT).show();
+					}
 				}
 			}, getTweetType(), more, lastTweetId);
 		} else if (!more) {

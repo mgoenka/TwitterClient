@@ -14,7 +14,9 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="name">Name</string>
     <string name="tagline">Tagline</string>
+    <string name="profile">Profile</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
+    <string name="api_limit_exceeded">Twitter API rate limit has been exceeded. Retry after 15 minutes.</string>
     
 </resources>

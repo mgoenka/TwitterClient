@@ -59,4 +59,4 @@ local.properties
 .DS_Store
 
 # Keys
-src/com/mgoenka/twitterclient/models/Keys.java
+src/com/mgoenka/twitterclient/helpers/Keys.java
