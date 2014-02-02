@@ -12,15 +12,33 @@ import com.mgoenka.twitterclient.models.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ProfileActivity extends FragmentActivity {
-
+	private String screenName;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
-		loadProfileInfo();
+		screenName = getIntent().getStringExtra("screen_name");
+
+		if (screenName.equals("@me@")) {
+			loadMyProfileInfo();
+		} else {
+			loadUserProfileInfo();
+		}
 	}
 	
-	private void loadProfileInfo() {
+	private void loadUserProfileInfo() {
+		TwitterClientApp.getRestClient().getUserInfo(new JsonHttpResponseHandler () {
+			@Override
+			public void onSuccess(JSONObject json) {
+				User u = User.fromJson(json);
+				getActionBar().setTitle("@" + u.getScreenName());
+				populateProfileHeader(u);
+			}
+		}, getIntent().getStringExtra("user_id"), screenName);
+	}
+
+	private void loadMyProfileInfo() {
 		TwitterClientApp.getRestClient().getMyInfo(new JsonHttpResponseHandler () {
 			@Override
 			public void onSuccess(JSONObject json) {

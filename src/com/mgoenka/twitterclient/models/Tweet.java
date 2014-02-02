@@ -27,7 +27,10 @@ public class Tweet extends Model {
 	@Column(name = "UId", index = true, unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
 	private long uid;
 
-    public String getBody() {
+	@Column(name = "ProfileId")
+	private long profileId;
+
+	public String getBody() {
         return body;
     }
 
@@ -47,6 +50,10 @@ public class Tweet extends Model {
         return uid;
     }
 
+    public long getProfileId() {
+        return profileId;
+    }
+
     public static Tweet fromJson(JSONObject jsonObject) {
     	User user;
     	
@@ -58,6 +65,7 @@ public class Tweet extends Model {
             tweet.userName = user.getName();
             tweet.userScreenName = user.getScreenName();
             tweet.userProfileImageUrl = user.getProfileImageUrl();
+            tweet.profileId = user.getProfileId();
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

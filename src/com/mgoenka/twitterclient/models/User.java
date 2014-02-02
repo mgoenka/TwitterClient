@@ -13,6 +13,7 @@ public class User extends Model {
 	private String profileBgImageUrl;
 	private int followersCount;
 	private int friendsCount;
+	private long profileId;
 	
     public String getName() {
         return name;
@@ -42,6 +43,10 @@ public class User extends Model {
     	return friendsCount;
     }
 
+    public long getProfileId() {
+        return profileId;
+    }
+
     public static User fromJson(JSONObject json) {
         User u = new User();
         try {
@@ -52,7 +57,7 @@ public class User extends Model {
         	u.profileBgImageUrl = json.getString("profile_background_image_url");
         	u.followersCount = json.getInt("followers_count");
         	u.friendsCount = json.getInt("friends_count");
-        	
+        	u.profileId = json.getLong("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
