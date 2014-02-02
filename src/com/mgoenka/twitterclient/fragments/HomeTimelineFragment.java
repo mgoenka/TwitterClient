@@ -10,21 +10,23 @@ import android.os.Bundle;
 import com.activeandroid.query.Select;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mgoenka.twitterclient.TwitterClientApp;
+import com.mgoenka.twitterclient.helpers.Utilities;
 import com.mgoenka.twitterclient.models.Tweet;
 
 public class HomeTimelineFragment extends TweetsListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		updateTimeline(false);
+		updateTweets(false);
 	}
 	
-	public void updateTimeline(final boolean more) {
-		// int tweetsSize = tweets.size();
-		// long lastTweetId = tweetsSize > 0 ? tweets.get(tweetsSize - 1).getUserId() : 0;
+	@Override
+	public void updateTweets(final boolean more) {
+		int tweetsSize = tweets.size();
+		long lastTweetId = tweetsSize > 0 ? tweets.get(tweetsSize - 1).getUserId() : 0;
 		
-		if (isNetworkAvailable()) {
-			TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
+		if (Utilities.isNetworkAvailable()) {
+			TwitterClientApp.getRestClient().getTweets(new JsonHttpResponseHandler() {
 				@Override
 				public void onSuccess(JSONArray jsonTweets) {
 					if (!more) {
@@ -33,8 +35,7 @@ public class HomeTimelineFragment extends TweetsListFragment {
 					}
 					getAdapter().addAll(Tweet.fromJson(jsonTweets));
 				}
-			});
-			// }, more, lastTweetId);
+			}, "home", more, lastTweetId);
 		} else if (!more) {
 			tweets.clear();
 			List<Tweet> twt = new Select().from(Tweet.class).execute();
@@ -43,10 +44,9 @@ public class HomeTimelineFragment extends TweetsListFragment {
 		}
 	}
 	
-	protected static boolean isNetworkAvailable() {
-        //ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        //NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return true;
-        //return activeNetworkInfo != null;
-    }
+	@Override
+	public String getTweetType() {
+		// Override this method in other classes
+		return "home";
+	}
 }
