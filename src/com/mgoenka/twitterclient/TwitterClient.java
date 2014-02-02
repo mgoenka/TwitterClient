@@ -31,12 +31,15 @@ public class TwitterClient extends OAuthBaseClient {
         super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
     }
     
-    public void getTweets(AsyncHttpResponseHandler handler, String tweetType, boolean more, long maxId) {
+    public void getTweets(AsyncHttpResponseHandler handler, String tweetType, boolean more, long maxId, String screenName) {
     	String url = getApiUrl("1.1/statuses/" + tweetType + "_timeline.json");
         RequestParams params = new RequestParams();
     	params.put("count", "25");
         if (more) {
         	params.put("max_id", String.valueOf(maxId - 1));
+        }
+        if (tweetType.equals("user") && !screenName.equals("@me@")) {
+        	params.put("screen_name", screenName);
         }
     	
     	client.get(url, params, handler);
@@ -47,10 +50,9 @@ public class TwitterClient extends OAuthBaseClient {
     	client.get(url, null, handler);
     }
 
-    public void getUserInfo(AsyncHttpResponseHandler handler, String userId, String screenName) {
+    public void getUserInfo(AsyncHttpResponseHandler handler, String screenName) {
     	String url = getApiUrl("1.1/users/show.json");
         RequestParams params = new RequestParams();
-    	params.put("user_id", userId);
     	params.put("screen_name", screenName);
 
     	client.get(url, params, handler);

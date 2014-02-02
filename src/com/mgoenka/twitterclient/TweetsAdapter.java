@@ -50,7 +50,6 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
                 if (v.equals(imageView)) {
                     // Write your awesome code here
                 	Intent i = new Intent(activityContext, ProfileActivity.class);
-            		i.putExtra("user_id", tweet.getProfileId());
             		i.putExtra("screen_name", tweet.getUserScreenName());
                 	activityContext.startActivity(i);
                 }

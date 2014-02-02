@@ -12,7 +12,7 @@ import com.mgoenka.twitterclient.models.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ProfileActivity extends FragmentActivity {
-	private String screenName;
+	private static String screenName = "@me@";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +27,6 @@ public class ProfileActivity extends FragmentActivity {
 		}
 	}
 	
-	private void loadUserProfileInfo() {
-		TwitterClientApp.getRestClient().getUserInfo(new JsonHttpResponseHandler () {
-			@Override
-			public void onSuccess(JSONObject json) {
-				User u = User.fromJson(json);
-				getActionBar().setTitle("@" + u.getScreenName());
-				populateProfileHeader(u);
-			}
-		}, getIntent().getStringExtra("user_id"), screenName);
-	}
-
 	private void loadMyProfileInfo() {
 		TwitterClientApp.getRestClient().getMyInfo(new JsonHttpResponseHandler () {
 			@Override
@@ -47,6 +36,17 @@ public class ProfileActivity extends FragmentActivity {
 				populateProfileHeader(u);
 			}
 		});
+	}
+
+	private void loadUserProfileInfo() {
+		TwitterClientApp.getRestClient().getUserInfo(new JsonHttpResponseHandler () {
+			@Override
+			public void onSuccess(JSONObject json) {
+				User u = User.fromJson(json);
+				getActionBar().setTitle("@" + u.getScreenName());
+				populateProfileHeader(u);
+			}
+		}, screenName);
 	}
 
 	protected void populateProfileHeader(User user) {
@@ -61,5 +61,9 @@ public class ProfileActivity extends FragmentActivity {
 		tvFollowers.setText(Integer.toString(user.getFollowersCount()) + " " + getString(R.string.followers));
 		tvFollowing.setText(Integer.toString(user.getFriendsCount()) + " " + getString(R.string.following));
 		ImageLoader.getInstance().displayImage(user.getProfileImageUrl(), ivProfileImage);
+	}
+	
+	public static String getScreenName() {
+		return screenName;
 	}
 }
