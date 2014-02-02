@@ -30,12 +30,10 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(true);
 		Tab tabHome = actionBar.newTab().setText("Home")
-				.setTag("HomeTimelineFragment").setIcon(R.drawable.ic_home)
-				.setTabListener(this);
+				.setTag("HomeTimelineFragment").setIcon(R.drawable.ic_home).setTabListener(this);
 		
 		Tab tabMentions = actionBar.newTab().setText("Mentions")
-				.setTag("MentionsFragment").setIcon(R.drawable.ic_mentions)
-				.setTabListener(this);
+				.setTag("MentionsFragment").setIcon(R.drawable.ic_mentions).setTabListener(this);
 		
 		actionBar.addTab(tabHome);
 		actionBar.addTab(tabMentions);
@@ -54,7 +52,7 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	}
 	
 	public void onComposeTweet(MenuItem mi) {
-		Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+		Intent i = new Intent(this, ComposeActivity.class);
 		startActivityForResult(i, REQUEST_CODE);
 	}
 	
@@ -79,7 +77,6 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		
 	}
 
 	@Override
@@ -97,10 +94,8 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 		android.support.v4.app.FragmentTransaction fts = manager.beginTransaction();
 		
 		if (selectedTab == "HomeTimelineFragment") {
-			// Set the fragment in FrameLayout to Home Timeline
 			fts.replace(R.id.frame_container, new HomeTimelineFragment());
 		} else {
-			// Set the fragment in FrameLayout to Mentions
 			fts.replace(R.id.frame_container, new MentionsFragment());
 		}
 		fts.commit();

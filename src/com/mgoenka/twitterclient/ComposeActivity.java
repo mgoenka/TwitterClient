@@ -32,7 +32,7 @@ public class ComposeActivity extends Activity {
 			@Override
 			public void onSuccess(JSONArray postTweets) {
 				// Update timeline
-				// TimelineActivity.refreshTimeline();
+				// TimelineActivity.updateTweets();
 			}
 		}, composedTweet);
 		finish();
