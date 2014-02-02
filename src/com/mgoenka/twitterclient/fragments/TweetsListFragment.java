@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mgoenka.twitterclient.EndlessScrollListener;
@@ -66,9 +68,14 @@ public class TweetsListFragment extends Fragment {
 				public void onSuccess(JSONArray jsonTweets) {
 					if (!more) {
 						tweets.clear();
-						// new Delete().from(Tweet.class).execute();
+						new Delete().from(Tweet.class).execute();
 					}
 					getAdapter().addAll(Tweet.fromJson(jsonTweets));
+				}
+				
+				@Override
+				public void handleFailureMessage(Throwable e, String responseBody) {
+					Toast.makeText(getActivity(), responseBody, Toast.LENGTH_SHORT).show();
 				}
 			}, getTweetType(), more, lastTweetId);
 		} else if (!more) {
