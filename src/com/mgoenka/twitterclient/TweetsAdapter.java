@@ -33,13 +33,14 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
 		}
 		
 		final Tweet tweet = getItem(position);
+		final String screenName = tweet.getUserScreenName();
 		
 		final ImageView imageView = (ImageView) view.findViewById(R.id.ivProfile);
 		ImageLoader.getInstance().displayImage(tweet.getUserProfileImageUrl(), imageView);
 		
 		TextView nameView = (TextView) view.findViewById(R.id.tvName);
 		String formattedName = "<b>" + tweet.getUserName() + "</b> <small><font color='#777777'>@" +
-				tweet.getUserScreenName() + "</font></small>";
+				screenName + "</font></small>";
 		nameView.setText(Html.fromHtml(formattedName));
 		
 		TextView bodyView = (TextView) view.findViewById(R.id.tvBody);
@@ -50,7 +51,7 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
                 if (v.equals(imageView)) {
                     // Write your awesome code here
                 	Intent i = new Intent(activityContext, ProfileActivity.class);
-            		i.putExtra("screen_name", tweet.getUserScreenName());
+            		i.putExtra("screen_name", screenName);
                 	activityContext.startActivity(i);
                 }
             }

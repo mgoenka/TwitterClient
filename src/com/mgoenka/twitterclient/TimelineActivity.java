@@ -60,7 +60,6 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	
 	public void onProfileView(MenuItem mi) {
 		Intent i = new Intent(this, ProfileActivity.class);
-		i.putExtra("user_id", "1");
 		i.putExtra("screen_name", "@me@");
     	startActivity(i);
 	}

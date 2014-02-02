@@ -17,7 +17,6 @@ import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.mgoenka.twitterclient.EndlessScrollListener;
-import com.mgoenka.twitterclient.ProfileActivity;
 import com.mgoenka.twitterclient.R;
 import com.mgoenka.twitterclient.TweetsAdapter;
 import com.mgoenka.twitterclient.TwitterClientApp;
@@ -79,7 +78,7 @@ public abstract class TweetsListFragment extends Fragment {
 						displayCachedTweets();
 					}
 				}
-			}, tweetType, more, lastTweetId, (tweetType.equals("user") ? ProfileActivity.getScreenName() : null));
+			}, tweetType, more, lastTweetId);
 		} else if (!more) {
 			displayCachedTweets();
 		}

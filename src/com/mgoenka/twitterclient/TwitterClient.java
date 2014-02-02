@@ -31,15 +31,19 @@ public class TwitterClient extends OAuthBaseClient {
         super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
     }
     
-    public void getTweets(AsyncHttpResponseHandler handler, String tweetType, boolean more, long maxId, String screenName) {
+    public void getTweets(AsyncHttpResponseHandler handler, String tweetType, boolean more, long maxId) {
     	String url = getApiUrl("1.1/statuses/" + tweetType + "_timeline.json");
+    	
         RequestParams params = new RequestParams();
     	params.put("count", "25");
         if (more) {
         	params.put("max_id", String.valueOf(maxId - 1));
         }
-        if (tweetType.equals("user") && !screenName.equals("@me@")) {
-        	params.put("screen_name", screenName);
+        if (tweetType.equals("user")) {
+        	String screenName = ProfileActivity.getScreenName();
+        	if (!screenName.equals("@me@")) {
+        		params.put("screen_name", screenName);
+        	}
         }
     	
     	client.get(url, params, handler);
