@@ -20,27 +20,11 @@ public class ProfileActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
 		screenName = getIntent().getStringExtra("screen_name");
-
-		if (screenName.equals("@me@")) {
-			loadMyProfileInfo();
-		} else {
-			loadUserProfileInfo();
-		}
+		loadProfileInfo();
 	}
 	
-	private void loadMyProfileInfo() {
-		TwitterClientApp.getRestClient().getMyInfo(new JsonHttpResponseHandler () {
-			@Override
-			public void onSuccess(JSONObject json) {
-				User u = User.fromJson(json);
-				getActionBar().setTitle("@" + u.getScreenName());
-				populateProfileHeader(u);
-			}
-		});
-	}
-
-	private void loadUserProfileInfo() {
-		TwitterClientApp.getRestClient().getUserInfo(new JsonHttpResponseHandler () {
+	private void loadProfileInfo() {
+		TwitterClientApp.getRestClient().getProfileInfo(new JsonHttpResponseHandler () {
 			@Override
 			public void onSuccess(JSONObject json) {
 				User u = User.fromJson(json);

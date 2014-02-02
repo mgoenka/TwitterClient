@@ -49,7 +49,6 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
 		imageView.setOnClickListener(new OnClickListener() {
 		    public void onClick(View v) {
                 if (v.equals(imageView)) {
-                    // Write your awesome code here
                 	Intent i = new Intent(activityContext, ProfileActivity.class);
             		i.putExtra("screen_name", screenName);
                 	activityContext.startActivity(i);
