@@ -18,5 +18,6 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="api_limit_exceeded">Rate limit has been exceeded, displaying cached tweets.</string>
+    <string name="length_exceeded">You can only post tweets of 140 characters or less.</string>
     
 </resources>
