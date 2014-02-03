@@ -19,14 +19,11 @@ public class ComposeActivity extends Activity {
 	}
 	
 	public void onCancel(View v) {
+		setResult(RESULT_CANCELED);
 		finish();
 	}
 	
 	public void onTweet(View v) {
-		postTweet();
-	}
-	
-	protected void postTweet() {
 		String composedTweet = ((EditText) findViewById(R.id.etComposedTweet)).getText().toString();
 		
 		TwitterClientApp.getRestClient().postStatusUpdates(new JsonHttpResponseHandler() {
@@ -36,6 +33,7 @@ public class ComposeActivity extends Activity {
 				// TimelineActivity.updateTweets();
 			}
 		}, composedTweet);
+		setResult(RESULT_OK);
 		finish();
 	}
 }

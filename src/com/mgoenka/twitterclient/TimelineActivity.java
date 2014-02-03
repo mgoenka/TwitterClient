@@ -59,7 +59,7 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    // REQUEST_CODE is defined above
-	    if (requestCode == REQUEST_CODE) {
+	    if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
 			updateTweets();
 	    }
 	}
